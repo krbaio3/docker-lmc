@@ -7,6 +7,8 @@ FROM base AS build-front
 COPY ./ ./
 RUN npm install
 RUN npm run build
+ARG BASE_API_URL
+ENV BASE_API_URL=${BASE_API_URL}
 
 # Release
 FROM base AS release

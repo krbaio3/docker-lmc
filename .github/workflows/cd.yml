@@ -21,7 +21,7 @@ jobs:
           curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
           heroku container:login
       - name: Build docker image
-        run: docker build -t ${{ env.APP_NAME }} .
+        run: docker build -t ${{ env.APP_NAME }} --build-arg BASE_API_URL=${{secrets.BASE_API_URL}} .
       - name: Deploy docker image
         run: |
           docker tag ${{ env.APP_NAME }} ${{env.IMAGE_NAME}}
